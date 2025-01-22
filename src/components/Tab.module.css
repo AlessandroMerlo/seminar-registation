@@ -1,0 +1,101 @@
+.section {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tab {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    height: fit-content;
+}
+
+.headerContainer {
+    background-color: white;
+    width: fit-content;
+    border-radius: 1rem;
+    transform: translate(10%, -90%);
+    position: absolute;
+}
+
+.header {
+    padding: 0.5rem 0.75rem;
+    margin: 0;
+}
+
+.section> :not(:first-child) {
+    margin-top: 1rem
+}
+
+.firstTab {
+    background-color: #aaeac6;
+}
+
+.secondTab {
+    background-color: #abdaec;
+}
+
+.thirdTab {
+    background-color: #edc5aa;
+}
+
+.attendeeeNumberSelect {
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.attendeeeNumberSelect>option {
+    font-weight: 600;
+}
+
+.attendeeNamesParagraph {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+.attendeeNamesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 40%));
+    grid-gap: 0.5rem;
+}
+
+.inputTextLabel {
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.attendeeNamesInput {
+    width: auto;
+}
+
+.radioContainer {
+    margin-top: 1rem;
+}
+
+input {
+    font-weight: 600;
+}
+
+.companyNameInput {
+    margin-left: 0.5rem;
+}
+
+.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.containerWrapper {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease-in-out;
+    /* Durata e transizione */
+}
+
+.containerWrapper.visible {
+    height: auto;
+    /* Imposta l'altezza al valore naturale del contenuto */
+}
+
+.containerWrapper.hidden {
+    height: 0;
+}

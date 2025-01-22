@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'HelveticaBold';
+    src: url('./Helvetica-Bold-Font.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YoubeeBoldItalic';
+    src: url('./Youbee BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}

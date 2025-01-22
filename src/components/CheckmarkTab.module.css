@@ -1,0 +1,25 @@
+.checkmarkContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    background-color: #b9fdb4;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 3px 1.5px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 1.5px rgba(0, 0, 0, 0.1),
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.8);
+    margin: auto;
+}
+
+.checkmark {
+    width: 40px;
+    height: 20px;
+    border-left: 12px solid;
+    border-bottom: 12px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(135deg, #63bf2f 0%, #539b27 100%);
+    transform: rotate(-45deg) translate(10%, -10%);
+    position: absolute;
+}
