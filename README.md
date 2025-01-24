@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Seminar Registration
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a seminar registration application built with React and TypeScript.
 
 ## Available Scripts
 
@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
@@ -35,12 +35,57 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `npm run test-jest`
 
-## Learn More
+Runs the Jest test suite.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `npm run cypress:open`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Opens the Cypress test runner.
+
+### `npm run cypress:run`
+
+Runs the Cypress tests.
+
+## Environment Variables
+
+Create a `.env` file in the root of your project if it does not exist. Add the following line to specify the port to use:
+
+`PORT=your_port_number`
+
+Replace `your_port_number` with the port number you want to use for the application.
+
+If the port is set differently, you will need to use a different link to view the app in the browser.
+
+## Dependencies
+
+- React
+- TypeScript
+- Cypress
+- Jest
+- ESLint
+
+## DevDependencies
+
+- @testing-library/dom
+- @testing-library/jest-dom
+- @testing-library/react
+- @types/cypress
+- @types/jest
+- @types/react
+- @types/react-dom
+- @types/react-transition-group
+- eslint
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+- identity-obj-proxy
+- jest
+- jest-environment-jsdom
+- ts-jest
+- web-vitals
+
+## License
+
+This project is licensed under the MIT License.
