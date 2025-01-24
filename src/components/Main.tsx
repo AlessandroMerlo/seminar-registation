@@ -6,6 +6,7 @@ import ThirdTab from './ThirdTab';
 import FormData from '../models/FormData';
 
 const Main: React.FC = () => {
+
     const startFormData: FormData = {
         firstTab: {
             attendeeNumber: '',
@@ -69,7 +70,10 @@ const Main: React.FC = () => {
     }
 
     const isThirdTabValid = (): boolean => {
-        return isFirstTabValid() && isSecondTabValid();
+        return isFirstTabValid() &&
+            isSecondTabValid() &&
+            formData.thirdTab.isRock !== null &&
+            formData.thirdTab.isRock;
     }
 
     const reset = (): void => {
@@ -77,9 +81,23 @@ const Main: React.FC = () => {
     }
 
     return <main className={styles.mainContainer}>
-        <FirstTab data={formData.firstTab} onUpdate={updateFirstTab} isTabValid={isFirstTabValid()} />
-        <SecondTab data={formData.secondTab} onUpdate={updateSecondTab} isTabEnabled={isFirstTabValid()} isTabValid={isSecondTabValid()} />
-        <ThirdTab data={formData.thirdTab} onUpdate={updateThirdTab} isTabEnabled={isSecondTabValid()} resetForm={reset} isTabValid={isThirdTabValid()} />
+        <FirstTab
+            data={formData.firstTab}
+            onUpdate={updateFirstTab}
+            isTabValid={isFirstTabValid()}
+        />
+        <SecondTab
+            data={formData.secondTab}
+            onUpdate={updateSecondTab}
+            isTabEnabled={isFirstTabValid()}
+            isTabValid={isSecondTabValid()}
+        />
+        <ThirdTab
+            data={formData.thirdTab}
+            onUpdate={updateThirdTab}
+            isTabEnabled={isSecondTabValid()}
+            resetForm={reset} isTabValid={isThirdTabValid()}
+        />
     </main>;
 }
 

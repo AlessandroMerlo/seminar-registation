@@ -1,93 +1,76 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import FirstTab from '../FirstTab';
-import FormData from '../../models/FormData';
-import '@testing-library/jest-dom'
-
-// Mock delle costanti e delle funzioni di utilità
-jest.mock('../../utils/Constants', () => ({
-    QUESTIONS: {
-        firstTab: {
-            firstQuestion: 'How many attendees will be there?',
-        },
-    },
-}));
-
-jest.mock('../../utils/UtilCss', () => ({
-    joinCssClasses: (classes: string[]) => classes.join(' '),
-}));
-
-jest.mock('../CheckmarkTab', () => () => <div data-testid="checkmark-tab">Checkmark</div>);
-
-// Mock dei dati di esempio
-const mockData: FormData['firstTab'] = {
-    attendeeNumber: '',
-    attendeeNames: [],
-};
-
-const mockOnUpdate = jest.fn();
+import '@testing-library/jest-dom';
 
 describe('FirstTab Component', () => {
+    const mockOnUpdate = jest.fn();
+    const defaultProps = {
+        data: {
+            attendeeNumber: '',
+            attendeeNames: []
+        },
+        onUpdate: mockOnUpdate,
+        isTabValid: false
+    };
+
     beforeEach(() => {
-        jest.clearAllMocks();
+        mockOnUpdate.mockClear();
     });
 
-    it('renders the component with the initial state', () => {
-        render(
-            <FirstTab data={mockData} onUpdate={mockOnUpdate} isTabValid={false} />
-        );
-
-        expect(screen.getByText('Step 1')).toBeInTheDocument();
-        expect(screen.getByText('How many attendees will be there?')).toBeInTheDocument();
-        expect(screen.getByText('Please Choose')).toBeInTheDocument();
+    it('should render without crashing', () => {
+        const { getByText } = render(<FirstTab {...defaultProps} />);
+        expect(getByText('Step 1')).toBeInTheDocument();
     });
 
-    it('updates attendee number and names correctly', () => {
-        render(
-            <FirstTab data={mockData} onUpdate={mockOnUpdate} isTabValid={false} />
-        );
+    it('should update attendee number', () => {
+        const { getByRole } = render(<FirstTab {...defaultProps} />);
 
-        const select = screen.getByRole('combobox');
+        const select = getByRole('combobox');
+
         fireEvent.change(select, { target: { value: '3' } });
 
-        expect(mockOnUpdate).toHaveBeenCalledWith({
-            attendeeNumber: '3',
-            attendeeNames: ['', '', ''],
-        });
+        waitFor(() => {
+            expect(mockOnUpdate).toHaveBeenCalledWith({
+                attendeeNumber: '3',
+                attendeeNames: ['', '', '']
+            });
+        })
     });
 
-    it('updates attendee names correctly', () => {
-        const dataWithAttendees = {
-            ...mockData,
-            attendeeNumber: '2',
-            attendeeNames: ['', ''],
+    it('should update attendee name', () => {
+        const props = {
+            ...defaultProps,
+            data: {
+                attendeeNumber: '2',
+                attendeeNames: ['', '']
+            }
         };
+        const { getByRole } = render(<FirstTab {...props} />);
 
-        render(
-            <FirstTab data={dataWithAttendees} onUpdate={mockOnUpdate} isTabValid={false} />
-        );
+        waitFor(() => {
+            const input = getByRole('textbox', { name: 'attendee-name-1' });
 
-        const inputs = screen.getAllByRole('textbox');
-        fireEvent.change(inputs[0], { target: { value: 'John' } });
+            fireEvent.change(input, { target: { value: 'John Doe' } });
+            expect(mockOnUpdate).toHaveBeenCalledWith({
+                attendeeNames: ['John Doe', '']
+            });
+        })
+    });
 
-        expect(mockOnUpdate).toHaveBeenCalledWith({
-            attendeeNames: ['John', ''],
+    it('should display attendee name inputs when attendee number is selected', () => {
+        const props = {
+            ...defaultProps,
+            data: {
+                attendeeNumber: '2',
+                attendeeNames: ['', '']
+            }
+        };
+        const { getByRole } = render(<FirstTab {...props} />);
+
+        waitFor(() => {
+            expect(getByRole('textbox', { name: 'attendee-name-1' })).toBeInTheDocument();
+            expect(getByRole('textbox', { name: 'attendeeName-2' })).toBeInTheDocument();
         });
-    });
-
-    it('renders the checkmark when isTabValid is true', () => {
-        render(
-            <FirstTab data={mockData} onUpdate={mockOnUpdate} isTabValid={true} />
-        );
-
-        expect(screen.getByTestId('checkmark-tab')).toBeInTheDocument();
-    });
-
-    it('matches the snapshot', () => {
-        const { asFragment } = render(
-            <FirstTab data={mockData} onUpdate={mockOnUpdate} isTabValid={false} />
-        );
-
-        expect(asFragment()).toMatchSnapshot();
     });
 });

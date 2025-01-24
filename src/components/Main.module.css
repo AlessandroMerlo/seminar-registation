@@ -1,6 +1,12 @@
 .mainContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
     margin-top: 4rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.mainContainer>div {
+    flex: 1 1 calc((100% - 8rem) / 3);
+    min-width: 250px;
 }

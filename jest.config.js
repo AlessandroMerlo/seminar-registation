@@ -6,6 +6,14 @@ module.exports = {
     "^.+.tsx?$": ["ts-jest", {}],
   },
   moduleNameMapper: {
-    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+    '\\.module\\.css$': 'identity-obj-proxy',
+    '\\.module\\.scss$': 'identity-obj-proxy',
   },
+  transformIgnorePatterns: [
+    '^.+\\.module\\.(css|sass|scss)$'
+  ],
+  setupFilesAfterEnv: [
+    "<rootDir>/jest.setup.ts"
+  ]
 };

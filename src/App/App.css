@@ -1,28 +1,17 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.animatedContainer {
+  height: 0;
+  overflow: hidden;
+
+  visibility: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+
+  transition: height 0.25s ease, visibility 0.25s,
+    transform 0.25s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.animatedContainer[aria-expanded="true"] {
+  height: auto;
+  visibility: visible;
+  transform: scaleY(1);
 }

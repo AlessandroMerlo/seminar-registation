@@ -5,8 +5,7 @@
 
 .tab {
     padding: 1rem;
-    margin-bottom: 1rem;
-    height: fit-content;
+    height: max-content;
 }
 
 .headerContainer {
@@ -22,20 +21,8 @@
     margin: 0;
 }
 
-.section> :not(:first-child) {
+.subSection {
     margin-top: 1rem
-}
-
-.firstTab {
-    background-color: #aaeac6;
-}
-
-.secondTab {
-    background-color: #abdaec;
-}
-
-.thirdTab {
-    background-color: #edc5aa;
 }
 
 .attendeeeNumberSelect {
@@ -48,7 +35,7 @@
 }
 
 .attendeeNamesParagraph {
-    margin: 0;
+    margin: 1rem 0 0 0;
     padding: 1rem 0;
 }
 
@@ -82,20 +69,4 @@ input {
 .disabled {
     opacity: 0.3;
     pointer-events: none;
-}
-
-.containerWrapper {
-    overflow: hidden;
-    height: 0;
-    transition: height 0.3s ease-in-out;
-    /* Durata e transizione */
-}
-
-.containerWrapper.visible {
-    height: auto;
-    /* Imposta l'altezza al valore naturale del contenuto */
-}
-
-.containerWrapper.hidden {
-    height: 0;
 }
